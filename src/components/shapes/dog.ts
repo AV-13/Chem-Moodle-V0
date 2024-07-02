@@ -1,7 +1,7 @@
 import { dia } from '@joint/core';
 import { portsIn, portsOut } from '../ports';
 
-export const DoggoElement = dia.Element.define('DogElement', {
+export const DoggoElement = dia.Element.define('DoggoElement', {
     attrs: {
         body: {
             refWidth: '100%',

@@ -1,38 +1,97 @@
-body {
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: lightblue;
+}
+
+.full-screen-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: lightblue;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #696969
+  flex-direction: column;
+}
+
+.graph-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  height: 70%;
+  width: 100%;
 }
 #paper {
-  height: 90vh;
-  width: 90vw;
-}
-#toolbar {
-  z-index: 10000;
+  overflow: hidden;
+  margin: 0 20px;
+  height: 100%;
+  width: 70%;
+  border-radius: 20px;
+  border: 2px solid orange;
+
 }
 .toolbar-button {
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 75px;
   margin: 5px;
   border: none;
   background-size: cover;
+  background-color: transparent;
   cursor: pointer;
 }
-
-.dog-icon {
+.DoggoElement-icon {
   background-image: url('./../assets/svg/dog.svg');
 }
 
-.pig-icon {
+.PiggyElement-icon {
   background-image: url('./../assets/svg/pig.svg');
 }
-.rabbit-icon {
+.RabbitElement-icon {
   background-image: url('./../assets/svg/rabbit.svg');
 }
-.elephant-icon {
+.ElephantElement-icon {
   background-image: url('./../assets/svg/elephant.svg');
 }
+#existing-shapes-toolbar, #add-shapes-toolbar {
+  border-radius: 20px;
+  width : 125px;
+  min-height: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background-color: azure;
+  border: 2px solid orange;
+}
 
-/* Ajoutez des classes pour les autres icônes */
 
+/* ACTION TOOLBAR */
+
+#action-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  width: 70%;
+  background-color: azure;
+  border: 2px solid orange;
+}
+
+.action-svg-container {
+    margin: 15px;
+    width: 50px;
+    height: 50px;
+    border: 4px solid dimgray;
+    display: block;
+    padding: 3px;
+    border-radius: 10px;
+    cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}

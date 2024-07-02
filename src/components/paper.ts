@@ -1,9 +1,11 @@
 import { dia, shapes } from '@joint/core';
-import { getSelectedShape, resetSelectedShape } from './toolbar';
+import { getSelectedShape, resetSelectedShape, editExistingToolbar } from './toolbar';
+let paper: dia.Paper;
+let graph: dia.Graph
 export function createPaper(container: HTMLElement) {
     const namespace = shapes;
-    const graph = new dia.Graph({}, { cellNamespace: namespace });
-    const paper = new dia.Paper({
+    graph = new dia.Graph({}, { cellNamespace: namespace });
+    paper = new dia.Paper({
         el: container,
         model: graph,
         width: container.clientWidth,
@@ -29,6 +31,9 @@ export function createPaper(container: HTMLElement) {
             shape.position(x, y);
             shape.resize(100, 100); // Ajuster la taille si nécessaire
             shape.addTo(graph);
+            const existingElements = graph.getElements()
+            console.log(graph.getElements());
+            editExistingToolbar(existingElements);
             resetSelectedShape();
             console.log('Shape added to graph at:', x, y);
         }
@@ -38,3 +43,4 @@ export function createPaper(container: HTMLElement) {
     });
     return { paper, graph };
 }
+export { paper, graph };

@@ -2,14 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link href="public/styles/style.css" rel="stylesheet">
+    <link href="/styles/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chem Moodle</title>
   </head>
   <body>
-    <div id="toolbar"></div>
-    <div id="paper"></div>
+  <div class="full-screen-container">
+    <div id="action-toolbar">
+      <span id="new-schema" class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/new-file.svg"  title="Nouveau schéma" alt="Nouveau"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/folder-open.svg"  title="Ouvrir un schéma" alt="Ouvrir"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/save.svg"  title="Sauvegarder" alt="Sauvegarder"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/arrow-pointer.svg"  title="Sélectionner"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/eraser.svg"  title="Effacer"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/arrow-rotate.svg"  title="Pivoter"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/center.svg"  title="Centrer"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/soap-clean.svg"  title="Sublimer"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/new-file.svg"  title="Câble"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/new-file.svg"  title="Tuyau"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/undo.svg"  title="Annuler"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/redo.svg"  title="Rétablir"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/copy.svg"  title="Copier"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/cut.svg"  title="Couper"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/paste.svg"  title="Coller"/></span>
+      <span id="zoom-in" class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/zoom-in.svg"  title="Zoomer"/></span>
+      <span id="zoom-out" class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/zoom-out.svg"  title="Dézoomer"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/cog.svg"  title="Configuration"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/info.svg"  title="Informations"/></span>
+    </div>
+    <div class="graph-container">
+      <div id="add-shapes-toolbar"></div>
+      <div id="paper"></div>
+      <div id="existing-shapes-toolbar">
+        <p id="warning-message">Aucun équipement sélectionné</p>
+      </div>
+    </div>
+  </div>
     <script type="module" src="main.ts"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 import { dia } from '@joint/core';
 import { portsIn, portsOut } from '../ports';
 
-export const PiggyElement = dia.Element.define('PigElement', {
+export const PiggyElement = dia.Element.define('PiggyElement', {
     attrs: {
         body: {
             refWidth: '100%',
