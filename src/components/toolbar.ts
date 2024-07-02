@@ -39,12 +39,9 @@ export function resetSelectedShape(): void {
 
 export function editExistingToolbar(existingElements: dia.Element[]): void {
     const existingToolbar = document.getElementById('existing-shapes-toolbar');
-    const warningMessage = document.getElementById("warning-message");
-    console.log("existing elements", existingElements, existingToolbar, warningMessage);
     if (existingElements.length > 0 && existingToolbar) {
-        console.log("existingElements : ", existingElements);
-        if (warningMessage) warningMessage.style.display = 'none';
-
+        const warningMessage = document.getElementById("warning-message")
+        if(warningMessage) warningMessage.remove();
         existingElements.forEach(existingElement => {
             const elementType = existingElement.attributes.type
             if (existingShapes.includes(elementType)) {
@@ -55,7 +52,7 @@ export function editExistingToolbar(existingElements: dia.Element[]): void {
             button.className = `toolbar-button ${elementType}-icon`;
             existingToolbar.appendChild(button);
         });
-    } else if (warningMessage) {
+    } else if (existingElements.length === 0 && existingToolbar) {
         cleanExistingToolbar();
         return;
     }
@@ -105,9 +102,9 @@ export function cleanExistingToolbar(): void {
         while (toolbar.lastElementChild) {
             toolbar.removeChild(toolbar.lastElementChild);
         }
-
         const warningMessage = document.createElement("p");
-        warningMessage.textContent = "Aucun équipement sélectionné."
+        warningMessage.id = "warning-message";
+        warningMessage.textContent = "Aucun équipement sélectionné.";
         toolbar.appendChild(warningMessage);
     }
 }
