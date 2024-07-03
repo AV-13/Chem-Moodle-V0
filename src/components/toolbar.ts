@@ -4,7 +4,6 @@ import { ElephantElement } from './shapes/elephant';
 import { RabbitElement } from './shapes/rabbit';
 import { paper, graph } from "./paper.ts"
 import { dia } from "@joint/core";
-import {setUp} from "../../main.ts";
 // TODO Add a general custom SVG type (differences will be svg paths and ports)
 type ShapeType = typeof DoggoElement | typeof PiggyElement | typeof RabbitElement | typeof ElephantElement;
 let selectedShape: ShapeType | null = null;
@@ -108,3 +107,4 @@ export function cleanExistingToolbar(): void {
         toolbar.appendChild(warningMessage);
     }
 }
+
