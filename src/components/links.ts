@@ -1,42 +1,58 @@
-import { dia } from '@joint/core';
+import { shapes } from '@joint/core';
+import {enableHighlightOnHover} from "./hightlighter.ts";
+import {paper} from "./paper.ts";
 
-export function createLinks(paper: dia.Paper, rect1: dia.Element, rect2: dia.Element, cuteDog: dia.Element, cutePiggy: dia.Element) {
-    const graph = paper.model;
 
-    const link1 = new dia.Link({
-        source: { id: rect1.id },
-        target: { id: rect2.id },
-        router: { name: 'manhattan' },
-        connector: { name: 'rounded' },
+// ON passe en mode connexion : les points entrée sortie des élements du graph apparaissent :
+//  - on met un highlighter sur les points de connexion possible
+//  - on rajoute la feature d'aimantation au plus proche. magnet: true je crois ? à vérifier
+//  - premier clic sur source, deuxieme clic sur target
+// On créé deux méthodes pipe et wire qui permettent de différencier les liens.
+// Essayer de voir comment faire pour mettre le default link selon le choix que l'on fait (bouton pipe ou wire)
+
+export function createDefaultLink() {
+    const link = new shapes.standard.Link({
         attrs: {
             line: {
                 stroke: 'black',
-                strokeWidth: 2
-            }
-        }
-    });
-    link1.addTo(graph);
-
-    const link2 = new dia.Link({
-        source: { id: cuteDog.id, port: 'out' },
-        target: { id: rect2.id, port: 'in' },
-        router: { name: 'manhattan' },
-        connector: { name: 'rounded' },
-        attrs: {
-            line: {
-                stroke: 'red',
                 strokeWidth: 2,
-                strokeDasharray: '5 5',
                 targetMarker: {
-                    'type': 'path',
-                    'd': 'M 10 -5 0 0 10 5 Z',
-                    'stroke': 'red',
-                    'fill': 'red'
+                    type: 'path',
+                    d: '', // Empty path to make the marker invisible, I couldn't find any other way
+                    stroke: 'none',
+                    fill: 'none'
+                },
+                sourceMarker: {
+                    type: 'path',
+                    d: '', // Empty path to make the marker invisible, I couldn't find any other way
+                    stroke: 'none',
+                    fill: 'none'
                 }
-            }
-        }
+            },
+        },
+        labels: [{
+            position: {
+                distance: 0.5,
+                offset: 0,
+                args: {
+                    keepGradient: true
+                }
+            },
+            attrs: {
+                text: { text: '', 'font-size': 0 },
+                body: {
+                    'type': 'path',
+                    'd': 'M -10 -5 0 0 -10 5 Z',
+                    'stroke': 'black',
+                    'fill': 'black'
+                }
+            },
+            markup: [{
+                tagName: 'path',
+                selector: 'body'
+            }]
+        }]
     });
-    link2.addTo(graph);
-
-    // Ajoutez les autres liens de la même manière
+    enableHighlightOnHover(paper)
+    return link;
 }

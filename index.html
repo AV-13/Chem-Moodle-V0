@@ -10,7 +10,13 @@
   <body>
   <div class="full-screen-container">
     <div id="action-toolbar">
-      <span id="new-schema" class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/new-file.svg"  title="Nouveau schéma" alt="Nouveau"/></span>
+      <span id="new-schema" class="action-svg-container" draggable="false" >
+        <img draggable="false" src="/assets/svg/toolbar-svg/new-file.svg"
+             title="Nouveau (CTRL + N)
+             Efface tout le contenu."
+             alt="Nouveau"
+        />
+      </span>
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/folder-open.svg"  title="Ouvrir un schéma" alt="Ouvrir"/></span>
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/save.svg"  title="Sauvegarder" alt="Sauvegarder"/></span>
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/arrow-pointer.svg"  title="Sélectionner"/></span>
@@ -18,8 +24,8 @@
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/arrow-rotate.svg"  title="Pivoter"/></span>
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/center.svg"  title="Centrer"/></span>
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/soap-clean.svg"  title="Sublimer"/></span>
-      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/new-file.svg"  title="Câble"/></span>
-      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/new-file.svg"  title="Tuyau"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/cable.svg"  title="Câble"/></span>
+      <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/pipes.svg"  title="Tuyau"/></span>
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/undo.svg"  title="Annuler"/></span>
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/redo.svg"  title="Rétablir"/></span>
       <span id="zoom-in" class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/zoom-in.svg"  title="Zoomer"/></span>
@@ -28,7 +34,7 @@
       <span class="action-svg-container" draggable="false" ><img draggable="false" src="/assets/svg/toolbar-svg/info.svg"  title="Informations"/></span>
       <span class="action-select-container" draggable="false" >
         <label>
-          <select>
+          <select id="interface-select">
             <option value="student">Étudiant</option>
             <option value="viewer">Visionnage</option>
             <option value="Sketcher">Sketcher</option>

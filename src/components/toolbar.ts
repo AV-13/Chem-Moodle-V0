@@ -101,6 +101,7 @@ export function cleanExistingToolbar(): void {
         while (toolbar.lastElementChild) {
             toolbar.removeChild(toolbar.lastElementChild);
         }
+        existingShapes = [];
         const warningMessage = document.createElement("p");
         warningMessage.id = "warning-message";
         warningMessage.textContent = "Aucun équipement sélectionné.";
