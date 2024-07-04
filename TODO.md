@@ -7,6 +7,7 @@
 - selection mode
     - highlighter
     - GROUP selection : JointJS+, we have to code this
+    - move link: not implemented, have to do it with js events
 - connexion mode
   - wire links
   - pipe links

@@ -1,19 +1,22 @@
 
 export const portsIn = {
     position: {
-        name: 'left'
+        name: 'left',
+        args: {
+            dx: -5
+        }
     },
     attrs: {
         portBody: {
             magnet: true,
-            r: 5,
+            r: 8,
             fill: '#FF3366'
         }
     },
     label: {
         position: {
             name: 'left',
-            args: { y: 6 }
+            args: -20
         },
         markup: [{
             tagName: 'text',
@@ -29,19 +32,21 @@ export const portsIn = {
 
 export const portsOut = {
     position: {
-        name: 'right'
+        name: 'right',
+        args: {
+            dx: 5
+        }
     },
     attrs: {
         portBody: {
             magnet: true,
-            r: 5,
-            fill: '#3399FF'
+            r: 8,
+            fill: '#3399FF',
         }
     },
     label: {
         position: {
             name: 'right',
-            args: { y: 6 }
         },
         markup: [{
             tagName: 'text',
@@ -54,3 +59,4 @@ export const portsOut = {
         selector: 'portBody'
     }]
 };
+// label.position.args = position of the port

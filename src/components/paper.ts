@@ -1,4 +1,4 @@
-import { dia, shapes } from '@joint/core';
+import {dia, linkTools, shapes} from '@joint/core';
 import { getSelectedShape, resetSelectedShape, editExistingToolbar } from './toolbar';
 import {createDefaultLink} from "./links.ts";
 import {enableHighlightOnHover} from "./hightlighter.ts";
@@ -14,7 +14,6 @@ export function createPaper(container: HTMLElement) {
     paper = new dia.Paper({
         el: container,
         model: graph,
-        // Width and height paper properties are only in px by default so we use this to be able to use %
         width: container.clientWidth,
         height: container.clientHeight,
         gridSize: 9,
@@ -28,12 +27,31 @@ export function createPaper(container: HTMLElement) {
         defaultRouter: {
             name: 'manhattan',
         },
-        // snapLinks locks our link to the E/S point  when we're close enough
-        snapLinks: true,
-        // Todo change this default link to pipe link or wire link depending what selection the user choose
+        linkPinning: false,
+        snapLinks: { radius: 50},
         defaultLink: () => createDefaultLink(),
+        // TODO linkMove allows to move the label of a link, mb possible to move the label and the link associated, currently the link stays and the label moves
+        //  https://docs.jointjs.com/learn/features/shapes/links/tools/#interaction
+        interactive: true
+        // TODO use validateConnection to be
+        // validateConnection
+    });
+    // TH
+    paper.on('link:mouseenter', (linkView) => {
+        linkView.addTools(
+            new dia.ToolsView({
+                tools: [
+                    new linkTools.Remove(),
+                    new linkTools.TargetArrowhead(),
+                ],
+            })
+        );
+    });
+    paper.on('link:mouseleave', (linkView) => {
+        linkView.removeTools();
     });
     enableHighlightOnHover(paper);
+    console.log("after mouseup : ");
     paper.on('blank:pointerdown', (_event, x, y) => {
         const ShapeClass = getSelectedShape();
         if (ShapeClass) {

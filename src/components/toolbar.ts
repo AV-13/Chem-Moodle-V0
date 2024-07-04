@@ -4,12 +4,14 @@ import { ElephantElement } from './shapes/elephant';
 import { RabbitElement } from './shapes/rabbit';
 import { paper, graph } from "./paper.ts"
 import { dia } from "@joint/core";
-// TODO Add a general custom SVG type (differences will be svg paths and ports)
+import {connexionConfig} from "../../config.ts";
+// TODO Add a general Equipment type (differences will be svg paths and ports)
 type ShapeType = typeof DoggoElement | typeof PiggyElement | typeof RabbitElement | typeof ElephantElement;
 let selectedShape: ShapeType | null = null;
 let existingShapes: string[] = [];
 
 export function createShapesToolbar(container: HTMLElement) {
+    // TODO find a better way bc it will be awful with a big number of shapes
     const shapes = [
         { type: DoggoElement, icon: 'DoggoElement-icon' },
         { type: PiggyElement, icon: 'PiggyElement-icon' },
@@ -57,6 +59,18 @@ export function editExistingToolbar(existingElements: dia.Element[]): void {
     }
 }
 export function actionToolbar(): void {
+    const pipeButton = document.getElementById('pipe-button')
+    if(pipeButton)
+        pipeButton.addEventListener('click', () => {
+        connexionConfig.currentConnexionType = "pipe"
+        console.log("change to pipe : ", connexionConfig.currentConnexionType);
+    });
+    const wireButton = document.getElementById('wire-button')
+    if(wireButton)
+        wireButton.addEventListener('click', () => {
+            connexionConfig.currentConnexionType = "wire"
+            console.log("change to wire : ", connexionConfig.currentConnexionType);
+        });
     const zoomInIcon = document.getElementById("zoom-in")
     if(zoomInIcon)
     zoomInIcon.addEventListener("click", () => {
@@ -77,7 +91,8 @@ export function actionToolbar(): void {
         })
 }
 
-// TODO find a solution for the origin of the zoom. Add a limit to the zoom maybe (then disable the click on the button)
+// TODO find a solution for the origin of the zoom(ox, oy), (with the buttons we have to zoom at the center of the graph).
+//  Add a limit to the zoom maybe (then disable the click on the button)
 // Check this for zooming with mousewheel : https://github.com/clientIO/joint/issues/1027
 export function zoomIn(): void {
     const newSx = paper.scale().sx * 2;
