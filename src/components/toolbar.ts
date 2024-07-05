@@ -4,7 +4,7 @@ import { ElephantElement } from './shapes/elephant';
 import { RabbitElement } from './shapes/rabbit';
 import { paper, graph } from "./paper.ts"
 import { dia } from "@joint/core";
-import {connexionConfig} from "../../config.ts";
+import {connexionConfig, selectedMode} from "../globalVariables.ts";
 // TODO Add a general Equipment type (differences will be svg paths and ports)
 type ShapeType = typeof DoggoElement | typeof PiggyElement | typeof RabbitElement | typeof ElephantElement;
 let selectedShape: ShapeType | null = null;
@@ -59,13 +59,13 @@ export function editExistingToolbar(existingElements: dia.Element[]): void {
     }
 }
 export function actionToolbar(): void {
-    const pipeButton = document.getElementById('pipe-button')
+    const pipeButton = document.getElementById('pipe-connexion')
     if(pipeButton)
         pipeButton.addEventListener('click', () => {
         connexionConfig.currentConnexionType = "pipe"
         console.log("change to pipe : ", connexionConfig.currentConnexionType);
     });
-    const wireButton = document.getElementById('wire-button')
+    const wireButton = document.getElementById('wire-connexion')
     if(wireButton)
         wireButton.addEventListener('click', () => {
             connexionConfig.currentConnexionType = "wire"
@@ -95,13 +95,13 @@ export function actionToolbar(): void {
 //  Add a limit to the zoom maybe (then disable the click on the button)
 // Check this for zooming with mousewheel : https://github.com/clientIO/joint/issues/1027
 export function zoomIn(): void {
-    const newSx = paper.scale().sx * 2;
-    const newSy =  paper.scale().sy * 2;
+    const newSx = paper.scale().sx * 1.4;
+    const newSy =  paper.scale().sy * 1.4;
     paper.scale(newSx, newSy);
 }
 export function zoomOut(): void {
-    const newSx = paper.scale().sx / 2;
-    const newSy =  paper.scale().sy / 2;
+    const newSx = paper.scale().sx / 1.4;
+    const newSy =  paper.scale().sy / 1.4;
     paper.scale(newSx, newSy);
 }
 export function newSchema(): void {
@@ -124,3 +124,30 @@ export function cleanExistingToolbar(): void {
     }
 }
 
+//-------------------- Selection mode logic ----------------------
+
+function updateSelectedMode(newMode, element) {
+    const currentSelected = document.querySelector('.selectedMode');
+    if (currentSelected) {
+        currentSelected.classList.remove('selectedMode');
+    }
+    selectedMode.mode = newMode;
+    element.classList.add('selectedMode');
+}
+document.getElementById('selection').addEventListener('click', function() {
+    updateSelectedMode('selection', this);
+});
+
+document.getElementById('deletion').addEventListener('click', function() {
+    updateSelectedMode('deletion', this);
+});
+
+document.getElementById('wire-connexion').addEventListener('click', function() {
+    updateSelectedMode('wire-connexion', this);
+});
+document.getElementById('pipe-connexion').addEventListener('click', function() {
+    updateSelectedMode('pipe-connexion', this);
+});
+document.getElementById('rotation').addEventListener('click', function() {
+    updateSelectedMode('rotation', this);
+});

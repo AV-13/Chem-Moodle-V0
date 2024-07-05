@@ -5,11 +5,9 @@ import {interfaceChoice} from "./src/components/interfaceMode";
 const container = document.getElementById('paper');
 const toolbarContainer = document.getElementById('add-shapes-toolbar');
 if  (container && toolbarContainer) {
-    document.addEventListener('DOMContentLoaded', function() {
         const model = createPaper(container);
         createShapesToolbar(toolbarContainer);
         interfaceChoice();
         editExistingToolbar(model.graph.getElements());
         actionToolbar();
-    });
 }

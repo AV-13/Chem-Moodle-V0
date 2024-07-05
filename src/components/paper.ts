@@ -17,7 +17,7 @@ export function createPaper(container: HTMLElement) {
         width: container.clientWidth,
         height: container.clientHeight,
         gridSize: 9,
-        // TODO make drawGrid dynamic mb with a button ? check specifications
+        // TODO make drawGrid dynamic mb with a button ? check specifications if required
         drawGrid: {
             name: 'mesh',
             args: { color: 'gray', thickness: 0.5 }
@@ -28,15 +28,12 @@ export function createPaper(container: HTMLElement) {
             name: 'manhattan',
         },
         linkPinning: false,
-        snapLinks: { radius: 50},
+        snapLinks: { radius: 50 },
         defaultLink: () => createDefaultLink(),
         // TODO linkMove allows to move the label of a link, mb possible to move the label and the link associated, currently the link stays and the label moves
         //  https://docs.jointjs.com/learn/features/shapes/links/tools/#interaction
         interactive: true
-        // TODO use validateConnection to be
-        // validateConnection
     });
-    // TH
     paper.on('link:mouseenter', (linkView) => {
         linkView.addTools(
             new dia.ToolsView({
@@ -51,7 +48,6 @@ export function createPaper(container: HTMLElement) {
         linkView.removeTools();
     });
     enableHighlightOnHover(paper);
-    console.log("after mouseup : ");
     paper.on('blank:pointerdown', (_event, x, y) => {
         const ShapeClass = getSelectedShape();
         if (ShapeClass) {
@@ -64,6 +60,10 @@ export function createPaper(container: HTMLElement) {
             editExistingToolbar(existingElements);
             resetSelectedShape();
         }
+    });
+    // Catching event for sketcher class example
+    paper.on('element:pointermove',  (elementView, evt, x, y) => {
+        console.log("x : ", x, " y : ", y);
     });
     return { paper, graph };
 }

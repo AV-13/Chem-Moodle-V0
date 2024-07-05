@@ -1,5 +1,6 @@
 import { dia } from '@joint/core';
 
+// TODO possible to make this with a paper option like linkSnapping & co check the documentation and libavoid example
 const highlighterOption =  {
     highlighter: {
         name: 'stroke',
@@ -20,8 +21,6 @@ export function highlightElement(cellView: dia.CellView) {
 export function unHighlightElement(cellView: dia.CellView) {
     cellView.unhighlight(null, highlighterOption);
 }
-
-// Fonction pour ajouter les écouteurs d'événements à tous les éléments et liens
 export function enableHighlightOnHover(paper: dia.Paper) {
     const highlightOnHover = (cellView: dia.CellView) => {
         highlightElement(cellView);

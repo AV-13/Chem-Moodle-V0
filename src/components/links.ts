@@ -2,7 +2,7 @@ import {dia, shapes} from '@joint/core';
 import {enableHighlightOnHover} from "./hightlighter.ts";
 import {paper} from "./paper.ts";
 import Link = dia.Link;
-import {connexionConfig} from "../../config.ts";
+import { connexionConfig } from "../globalVariables.ts";
 // ON passe en mode connexion : les points entrée sortie des élements du graph apparaissent :
 //  - on met un highlighter sur les points de connexion possible
 //  - on rajoute la feature d'aimantation au plus proche. magnet: true je crois ? à vérifier
@@ -56,20 +56,4 @@ export function createDefaultLink(): Link {
     });
     enableHighlightOnHover(paper)
     return link;
-}
-
-function validateLinkConnection(sourceView: dia.ElementView, sourceMagnet: SVGElement, targetView: dia.ElementView, targetMagnet: SVGElement, end: string): boolean {
-    if (!sourceMagnet || !targetMagnet) {
-        return false;
-    }
-    return true;
-}
-
-export function validateLink(linkView: dia.LinkView) {
-    const link = linkView.model;
-    const source = link.get('source');
-    const target = link.get('target');
-    if (!source.id && !target.id) {
-        link.remove();
-    }
 }
